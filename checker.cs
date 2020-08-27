@@ -4,9 +4,10 @@ using System.Diagnostics;
 class Checker
 {
     static bool vitalsAreOk(float bpm, float spo2, float respRate) {
-       if(isBpmOk(bpm) && isSpo2Ok(spo2) && isrespRateOk(resRate))
-        return true;
-       return false;
+        bool ans=false;
+       if(isBpmOk(bpm) && isSpo2Ok(spo2) && isRespRateOk(respRate))
+        ans=true;
+       return ans;
     }
     static bool isBpmOk(float bpm){
           if(bpm>=70 && bpm<=150)
@@ -20,7 +21,7 @@ class Checker
           return false;
     }
     
-    static bool respRateOk(float respRate){
+    static bool isRespRateOk(float respRate){
           if(respRate>=30 && respRate<=95)
               return true;
           return false;

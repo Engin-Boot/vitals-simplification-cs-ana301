@@ -15,7 +15,7 @@ class Checker
           return false;
     }
     
-    static bool isSpo2Ok(float bpm){
+    static bool isSpo2Ok(float spo2){
           if(spo2>=90)
               return true;
           return false;

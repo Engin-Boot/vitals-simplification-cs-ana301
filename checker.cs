@@ -4,13 +4,19 @@ using System.Diagnostics;
 class Checker
 {
     static bool vitalsAreOk(float bpm, float spo2, float respRate) {
-        bool ans=false;
-       if(isBpmOk(bpm) && isSpo2Ok(spo2) && isRespRateOk(respRate))
-        ans=true;
-       return ans;
+      bool ans=true;
+      ans&=isBpmLowerLimit(bpm)&isBpmUpperLimit(bpm)&isSpo2Ok(spo2)&isRespRateLowerLimit(respRate)&isRespRateUpperLimit(respRate);
+      return ans;
+    
     }
-    static bool isBpmOk(float bpm){
-          if(bpm>=70 && bpm<=150)
+    static bool isBpmLowerLimit(float bpm){
+          if(bpm>=70)
+              return true;
+          return false;
+    }
+    
+    static bool isBpmUpperLimit(float bpm){
+          if(bpm<=150)
               return true;
           return false;
     }
@@ -21,11 +27,17 @@ class Checker
           return false;
     }
     
-    static bool isRespRateOk(float respRate){
-          if(respRate>=30 && respRate<=95)
+    static bool isRespRateLowerLimit(float respRate){
+          if(respRate>=30)
               return true;
           return false;
     }
+    
+    static bool isRespRateUpperLimit(float respRate){
+          if(respRate<=95)
+              return true;
+          return false;
+    }    
     static void ExpectTrue(bool expression) {
         if(!expression) {
             Console.WriteLine("Expected true, but got false");

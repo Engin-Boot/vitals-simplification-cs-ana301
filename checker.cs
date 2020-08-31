@@ -10,7 +10,7 @@ class Checker
     
     }
     static bool inLimits(float lowerLimit,float upperLimit,float value){
-          if(bpm>=lowerLimit && bpm<=upperLimit)
+          if(value>=lowerLimit && value<=upperLimit)
               return true;
           return false;
     }

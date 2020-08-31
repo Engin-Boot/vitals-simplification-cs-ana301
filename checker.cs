@@ -4,14 +4,15 @@ using System.Diagnostics;
 class Checker
 {
     static bool vitalsAreOk(float bpm, float spo2, float respRate) {
-        if(bpm < 70 || bpm > 150) {
-            return false;
-        } else if(spo2 < 90) {
-            return false;
-        } else if(respRate < 30 || respRate > 95) {
-            return false;
-        }
-        return true;
+      bool ans=true;
+      ans&=inLimits(70,150,bpm)&inLimits(90,Single.MaxValue,spo2)&inLimits(30,95,respRate);
+      return ans;
+    
+    }
+    static bool inLimits(float lowerLimit,float upperLimit,float value){
+          if(value>=lowerLimit && value<=upperLimit)
+              return true;
+          return false;
     }
     static void ExpectTrue(bool expression) {
         if(!expression) {
@@ -28,7 +29,16 @@ class Checker
     static int Main() {
         ExpectTrue(vitalsAreOk(100, 95, 60));
         ExpectFalse(vitalsAreOk(40, 91, 92));
+        ExpectFalse(vitalsAreOk(71, 89, 92));
+        ExpectFalse(vitalsAreOk(75, 91, 99));
+        ExpectFalse(vitalsAreOk(75, 70, 20));
+        ExpectFalse(vitalsAreOk(40, 65, 92));
+        ExpectFalse(vitalsAreOk(40, 91, 97));
+        ExpectFalse(vitalsAreOk(40, 75, 98));
+         
         Console.WriteLine("All ok");
         return 0;
     }
 }
+
+

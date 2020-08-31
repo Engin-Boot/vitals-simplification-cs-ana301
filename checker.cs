@@ -5,7 +5,7 @@ class Checker
 {
     static bool vitalsAreOk(float bpm, float spo2, float respRate) {
       bool ans=true;
-      ans&=inLimits(70,150,bpm)&inLimits(90,Single.MaxValue,spo2)&isRespRateLowerLimit(respRate)&inLimits(30,95,respRate);
+      ans&=inLimits(70,150,bpm)&inLimits(90,Single.MaxValue,spo2)&inLimits(30,95,respRate);
       return ans;
     
     }

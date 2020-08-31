@@ -5,39 +5,15 @@ class Checker
 {
     static bool vitalsAreOk(float bpm, float spo2, float respRate) {
       bool ans=true;
-      ans&=isBpmLowerLimit(bpm)&isBpmUpperLimit(bpm)&isSpo2Ok(spo2)&isRespRateLowerLimit(respRate)&isRespRateUpperLimit(respRate);
+      ans&=inLimits(70,150,bpm)&inLimits(90,Single.MaxValue,spo2)&isRespRateLowerLimit(respRate)&inLimits(30,95,respRate);
       return ans;
     
     }
-    static bool isBpmLowerLimit(float bpm){
-          if(bpm>=70)
+    static bool inLimits(float lowerLimit,float upperLimit,float value){
+          if(bpm>=lowerLimit && bpm<=upperLimit)
               return true;
           return false;
     }
-    
-    static bool isBpmUpperLimit(float bpm){
-          if(bpm<=150)
-              return true;
-          return false;
-    }
-    
-    static bool isSpo2Ok(float spo2){
-          if(spo2>=90)
-              return true;
-          return false;
-    }
-    
-    static bool isRespRateLowerLimit(float respRate){
-          if(respRate>=30)
-              return true;
-          return false;
-    }
-    
-    static bool isRespRateUpperLimit(float respRate){
-          if(respRate<=95)
-              return true;
-          return false;
-    }    
     static void ExpectTrue(bool expression) {
         if(!expression) {
             Console.WriteLine("Expected true, but got false");
@@ -64,3 +40,5 @@ class Checker
         return 0;
     }
 }
+
+
